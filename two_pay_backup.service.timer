@@ -1,0 +1,10 @@
+[Unit]
+Description=Run my Python script periodically
+Requires=yourscript.service
+
+[Timer]
+OnCalendar=*-*-* 00:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

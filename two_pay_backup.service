@@ -1,0 +1,12 @@
+[Unit]
+Description=Run my Python script
+After=network.target 
+
+[Service]
+Type=simple
+User=two_pay
+WorkingDirectory=/home/two_pay/backup_service/
+ExecStart=/home/two_pay/backup_service/venv/bin/python /home/two_pay/backup_service/main.py
+
+[Install]
+WantedBy=multi-user.target
