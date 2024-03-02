@@ -1,9 +1,9 @@
 [Unit]
 Description=Run my Python script periodically
-Requires=yourscript.service
+Requires=two_pay_backup.service
 
 [Timer]
-OnCalendar=*-*-* 00:00:00
+OnCalendar=*:0/5
 Persistent=true
 
 [Install]
