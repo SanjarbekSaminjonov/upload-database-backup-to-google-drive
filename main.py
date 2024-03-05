@@ -10,10 +10,10 @@ bot_token = env.str("BOT_TOKEN")
 chat_id = env.str("CHAT_ID")
 url = f"https://api.telegram.org/bot{bot_token}/sendDocument"
 
-name = f"backup_2pay.uz.sql.gz"
-file_path = os.curdir + f"/{name}"
+file_path = "/home/two_pay/backup_service/two_pay_backup.sql.gz"
 
-command = f"""docker exec -t web_db pg_dumpall -c -U two_pay_user | gzip > {name}"""
+os.chdir("/home/two_pay/backup_service/")
+command = "docker exec -t web_db pg_dumpall -c -U two_pay_user | gzip > two_pay_backup.sql.gz"
 os.system(command)
 
 with open(file_path, "rb") as file:
@@ -22,4 +22,4 @@ with open(file_path, "rb") as file:
     )
     print(res.text)
 
-os.remove(name)
+os.remove(file_path)
