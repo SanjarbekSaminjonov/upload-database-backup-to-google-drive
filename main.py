@@ -8,18 +8,21 @@ env.read_env()
 
 bot_token = env.str("BOT_TOKEN")
 chat_id = env.str("CHAT_ID")
-url = f"https://api.telegram.org/bot{bot_token}/sendDocument"
+current_dir = env.str("CURRENT_DIR")
+db_name = env.str("DB_NAME")
+db_user = env.str("DB_USER")
+backup_name = f"{db_name}_{db_user}.sql.gz"
 
-file_path = "/home/two_pay/backup_service/two_pay_backup.sql.gz"
-
-os.chdir("/home/two_pay/backup_service/")
-command = "docker exec -t web_db pg_dumpall -c -U two_pay_user | gzip > two_pay_backup.sql.gz"
+os.chdir(current_dir)
+command = f"docker exec -t {db_name} pg_dumpall -c -U {db_user} | gzip > {backup_name}"
 os.system(command)
 
+file_path = os.path.join(current_dir, backup_name)
 with open(file_path, "rb") as file:
     res = requests.post(
-        url, files={"document": (file.name, file)}, data={"chat_id": chat_id}
+        url=f"https://api.telegram.org/bot{bot_token}/sendDocument",
+        data={"chat_id": chat_id},
+        files={"document": (file.name, file)},
     )
-    print(res.text)
 
 os.remove(file_path)
