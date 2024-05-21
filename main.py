@@ -27,9 +27,9 @@ file = file_upload(backup_name, "application/gz")
 
 # send message to telegram
 message = (
-    f"Database backup: {file}\n\n"
-    f"File name: {backup_name}\n"
-    f"File size: {round(os.path.getsize(backup_name) / 2**20, 2)} MB"
+    f"Database backup: <code>{file}</code>\n\n"
+    f"File name: \t<b>{backup_name}</b>\n"
+    f"File size: \t<b>{round(os.path.getsize(backup_name) / 2**20, 2)} MB</b>"
 )
 command = f"curl -s -X POST https://api.telegram.org/bot{BOT_TOKEN}/sendMessage -d chat_id={CHAT_ID} -d text='{message}'"
 os.system(command)
