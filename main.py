@@ -31,7 +31,7 @@ message = (
     f"File name: \t<b>{backup_name}</b>\n"
     f"File size: \t<b>{round(os.path.getsize(backup_name) / 2**20, 2)} MB</b>"
 )
-command = f"curl -s -X POST https://api.telegram.org/bot{BOT_TOKEN}/sendMessage -d chat_id={CHAT_ID} -d text='{message}'"
+command = f"curl -s -X POST https://api.telegram.org/bot{BOT_TOKEN}/sendMessage -d chat_id={CHAT_ID} -d text='{message}' -d parse_mode=HTML"
 os.system(command)
 
 # delete backup file from server
