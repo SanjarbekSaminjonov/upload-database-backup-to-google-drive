@@ -30,7 +30,7 @@ def get_service():
             creds.refresh(Request())
         else:
             flow = InstalledAppFlow.from_client_secrets_file(
-                "credentials.json",
+                "credentials.json",  # credentials.json file generated from Google API Console
                 SCOPES
             )
             creds = flow.run_local_server(port=0)
