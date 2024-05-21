@@ -27,7 +27,8 @@ file = file_upload(backup_name, "application/gz")
 
 # send message to telegram
 message = f"Database backup: {file}"
-os.system(f"curl -s -X POST https://api.telegram.org/bot{BOT_TOKEN}/sendMessage -d chat_id={CHAT_ID} -d text='{message}'")
+command = f"curl -s -X POST https://api.telegram.org/bot{BOT_TOKEN}/sendMessage -d chat_id={CHAT_ID} -d text='{message}'"
+os.system(command)
 
 # delete backup file from server
 os.remove(backup_name)
