@@ -1,7 +1,3 @@
-# https://developers.google.com/drive/api/quickstart/python
-# https://ragug.medium.com/how-to-upload-files-using-the-google-drive-api-in-python-ebefdfd63eab
-# https://developers.google.com/drive/api/guides/manage-uploads#python
-
 import os.path
 
 from google.auth.transport.requests import Request
